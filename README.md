@@ -111,6 +111,9 @@ bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py 1 -
 # test on Target Domain
 bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py path/to/your/epoch_12.pth 1 --out path/to/your/xxx.pkl --work-dir ./work_dir --corruptions benchmark
 ```
+## 5. Results 
+:rotating_light: On October 23, we reran the experiments using a single RTX 3090, and the resulting weights are provided [here](https://drive.google.com/drive/folders/1wRsuyERJVGrfR_DgNy3IRTpp7lQjOoFF).
+
 ## Acknowledgment
 + The code is based on [Cauvis](https://github.com/lichen1015/Cauvis) (NeurIPS 2025) 
 + In addition, some ideas inspired by [OFT](https://oft.wyliu.com/) (NeurIPS 2023) and [PAID](https://github.com/wangkunyu241/PAID) (NeurIPS 2025).
