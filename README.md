@@ -112,16 +112,17 @@ bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py 1 -
 bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py path/to/your/epoch_12.pth 1 --out path/to/your/xxx.pkl --work-dir ./work_dir --corruptions benchmark
 ```
 ## 5. Results 
-:rotating_light: On October 23, we re-ran the experiments using a single RTX 3090, and the resulting weights are provided here: [gift_faster_dwd](https://drive.google.com/drive/folders/1wRsuyERJVGrfR_DgNy3IRTpp7lQjOoFF).
 
-**Usage:**
-+ Download the file from the link above.
+
+:rotating_light: We re-ran the experiments on October 23 using a single NVIDIA RTX 3090 GPU. You can follow the steps below to reproduce the results: 
+| Model  | Day Clear | Day Foggy | Dusk Rainy | Night Rainy | Night Clear | Avg. |mPC 
+|:------:|:---------:|:---------:|:----------:|:-----------:|:-----------:|:----:|:----:|
+| GIFT | 75.8      | 56.5      | 64.6      | 48.1        | 62.6        | 61.6| 58.0|
++ Download the file from here. [gift_faster_dwd](https://drive.google.com/drive/folders/1wRsuyERJVGrfR_DgNy3IRTpp7lQjOoFF).
 + Place it under `weights/` (create the folder if it doesn’t exist), e.g., `weights/gift_faster_dwd.pth`
 + Run evaluation:
 ```bash
-python tools/test.py \
-     configs/gift/gift-faster-rcnn_r50_fpn_dwd.py \
-     weights/gift_faster_dwd.pth
+python tools/test.py configs/gift/gift-faster-rcnn_r50_fpn_dwd.py weights/gift_faster_dwd.pth
 ```
 
 ## Acknowledgment
