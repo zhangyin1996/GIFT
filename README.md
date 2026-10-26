@@ -1,14 +1,22 @@
-## GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
+# 🎁 GIFT
+## [NeurIPS 2026] GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
+[Yin Zhang](https://zhangyin1996.github.io/), [Yaoyue Zheng](https://yaoyz96.github.io/), [Yongqiang Zhang](https://scholar.google.com/citations?user=mgpE1noAAAAJ&hl), [Bogdan Raducanu](https://scholar.google.com/citations?user=zdIW07oAAAAJ), [Dan Liu](https://openreview.net/profile?id=~Dan_Liu14)
 
-## Installation
-### Pretrained DINOv2 
-* **Download:** Download pre-trained weights **dinov2_vitl14_pretrain.pth** from facebookresearch. 
-* **Convert:** 
+## :bell: Updates
++ 2026-10-26: Code is available now.
+
+## 1. Pretraining Weights
+
+* You can directly download the preprocessed weights from this [link](https://drive.google.com/drive/folders/1SGlq6eXOg2PWBB_aUdLFk5VuEQTxlCvs) and place them in the `checkpoint` folder.
+* You can also follow the steps below to process them yourself:
+  - Download pre-trained weights [dinov2_vitl14_pretrain.pth](https://dl.fbaipublicfiles.com/dinov2/dinov2_vitl14/dinov2_vitl14_pretrain.pth) from facebookresearch
+  - Convert
   ```bash
   python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_1024.pth --height 1024 --width 1024
   python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_640.pth --height 640 --width 640
   ```
-### environment
+
+## 2. Environment Setup
 ```bash
 conda create -n gift -y python=3.9
 conda activate gift
@@ -18,14 +26,13 @@ pip install albumentations==1.4.4 timm einops
 pip install -U openmim
 mim install mmengine
 mim install mmcv==2.2.0
-##pip install xformers==0.0.24
 pip install xformers==0.0.24 --index-url https://download.pytorch.org/whl/cu118
 pip install -v -e .
 pip install numpy==1.26.0
 ```
 
-## Data Preparation
-Download the **DWD** and **Cityscapes-C** datasets, and organize it in `/data/datasets` folder as follows:
+## 3. Dataset Preparation
+Download the **[DWD](https://github.com/AmingWu/Single-DGOD)** and **Cityscapes-C** datasets, and organize it in `/data/datasets` folder as follows:
 ```
 |-- Single-DGOD/
 |   |-- Daytime_Sunny/
@@ -41,25 +48,41 @@ Download the **DWD** and **Cityscapes-C** datasets, and organize it in `/data/da
 |   |           |-- JPEGImages
 |   |               |-- 0a0a0b1a-7c39d841.jpg
 |   |-- DaytimeFoggy/
+|   |   |-- daytime_foggy/
+|   |       |-- VOC2007
+|   |           |-- ...
 |   |-- Dusk-rainy/
+|   |   |-- dusk_rainy/
+|   |       |-- VOC2007
+|   |           |-- ...
 |   |-- Night_rainy/
+|   |   |-- night_rainy/
+|   |       |-- VOC2007
+|   |           |-- ...
 |   |-- Night-Sunny/
+|   |   |-- Night-Sunny/
+|   |       |-- VOC2007  # The official 'Night-Sunny' dataset does not include a VOC2007 folder, you need to create one yourself.
+|   |           |-- ...
 ```
 
-## Train
-### DWD
+## 4. Train and test
++ DWD
 ```shell
 # Train with Faster R-CNN (single GPU)
 CUDA_VISIBLE_DEVICES=0 bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py 1 --amp --work-dir ./work_dir/gift_faster_dwd --find_unused_parameters
 # Train with Faster R-CNN (mutiple GPUs)
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py 4 --amp --work-dir ./work_dir/gift_faster_dwd --find_unused_parameters
+
+# Train with DETR-based detector Dino (single GPUs)
+CUDA_VISIBLE_DEVICES=0 bash tools/dist_train.sh configs/gift/gift_dinov2_dinohead_bs1x4_dwd.py 1 --amp --work-dir ./work_dir/gift_detr_dwd --find_unused_parameters
 # Train with DETR-based detector Dino (mutiple GPUs)
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash tools/dist_train.sh configs/gift/gift_dinov2_dinohead_bs1x4_dwd.py 4 --amp --work-dir ./work_dir/gift_detr_dwd --find_unused_parameters
+
 # test
 bash tools/dist_test.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py path/to/your.pth 1 --work-dir ./work_dir/test_gift_faster_dwd
 ```
 
-### Cityscapes-C
++ Cityscapes-C
 
 ```shell
 # Train on Source Domain (Cityscapes)
@@ -68,3 +91,8 @@ bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py 1 -
 # test on Target Domain
 bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py path/to/your/epoch_12.pth 1 --out path/to/your/xxx.pkl --work-dir ./work_dir --corruptions benchmark
 ```
+## Acknowledgment
++ The code is based on [Cauvis](https://github.com/lichen1015/Cauvis) (NeurIPS 2025) 
++ In addition, some ideas inspired by [OFT](https://oft.wyliu.com/) (NeurIPS 2023) and [PAID](https://github.com/wangkunyu241/PAID) (NeurIPS 2025).
+
+**Many thanks for these great works!**
