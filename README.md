@@ -28,7 +28,7 @@
 ## 1. Pretraining Weights
 
 * You can directly download the preprocessed weights from this [link](https://drive.google.com/drive/folders/1SGlq6eXOg2PWBB_aUdLFk5VuEQTxlCvs) and place them in the `checkpoint` folder.
-* You can also follow the steps below to process them yourself:
+* You can also follow the steps below to process them yourself.
   - Download pre-trained weights [dinov2_vitl14_pretrain.pth](https://dl.fbaipublicfiles.com/dinov2/dinov2_vitl14/dinov2_vitl14_pretrain.pth) from facebookresearch
   - Convert
   ```bash
@@ -36,7 +36,7 @@
   python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_640.pth --height 640 --width 640
   ```
 
-## 2. Environment Setup
+## 2. Environment Setup (cuda 11.8, pytorch 2.2.0)
 ```bash
 conda create -n gift -y python=3.9
 conda activate gift
@@ -52,7 +52,9 @@ pip install numpy==1.26.0
 ```
 
 ## 3. Dataset Preparation
-Download the **[DWD](https://github.com/AmingWu/Single-DGOD)** and **Cityscapes-C** datasets, and organize it in `/data/datasets` folder as follows:
++ Download the [DWD](https://github.com/AmingWu/Single-DGOD).
++ Download the [original Cityscapes](https://www.cityscapes-dataset.com/downloads/) datasets and prepare the corresponding COCO-format detection annotations.
++ Organize it in `/data/datasets` folder as follows:
 ```
 |-- Single-DGOD/
 |   |-- Daytime_Sunny/
@@ -81,9 +83,12 @@ Download the **[DWD](https://github.com/AmingWu/Single-DGOD)** and **Cityscapes-
 |   |           |-- ...
 |   |-- Night-Sunny/
 |   |   |-- Night-Sunny/
-|   |       |-- VOC2007  # The official 'Night-Sunny' dataset does not include a VOC2007 folder, you need to create one yourself.
+|   |       |-- VOC2007  ### [Important] The official 'Night-Sunny' dataset does not include a VOC2007 folder, you need to create one yourself.
 |   |           |-- ...
+|-- cityscapes/
+|   |-- ....
 ```
+:rotating_light: During robustness evaluation, Cityscapes-C corruptions are generated on the fly, no pre-generated Cityscapes-C dataset is required.
 
 ## 4. Train and test
 + DWD
@@ -102,7 +107,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 bash tools/dist_train.sh configs/gift/gift_dinov2_d
 bash tools/dist_test.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py path/to/your.pth 1 --work-dir ./work_dir/test_gift_faster_dwd
 ```
 
-+ Cityscapes-C
++ Cityscapes
 
 ```shell
 # Train on Source Domain (Cityscapes)
