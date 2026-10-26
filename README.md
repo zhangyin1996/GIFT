@@ -3,7 +3,7 @@
 </p>
 
 <h2 align="center">
-  🎁GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
+  🎁 GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
 </h2>
 
 <p align="center">
@@ -112,12 +112,12 @@ bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py 1 -
 bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py path/to/your/epoch_12.pth 1 --out path/to/your/xxx.pkl --work-dir ./work_dir --corruptions benchmark
 ```
 ## 5. Results 
-
-
-:rotating_light: We re-ran the experiments on October 23 using a single NVIDIA RTX 3090 GPU. You can follow the steps below to reproduce the results: 
 | Model  | Day Clear | Day Foggy | Dusk Rainy | Night Rainy | Night Clear | Avg. |mPC 
 |:------:|:---------:|:---------:|:----------:|:-----------:|:-----------:|:----:|:----:|
+| Cauvis | 72.2      | 52.3      | 61.3      | 44.1        | 58.3        | 57.6| 54.1|
 | GIFT | 75.8      | 56.5      | 64.6      | 48.1        | 62.6        | 61.6| 58.0|
+
+:rotating_light: We re-ran the experiments on October 23 using a single NVIDIA RTX 3090 GPU. You can follow the steps below to reproduce the results: 
 + Download the file from here. [gift_faster_dwd](https://drive.google.com/drive/folders/1wRsuyERJVGrfR_DgNy3IRTpp7lQjOoFF).
 + Place it under `weights/` (create the folder if it doesn’t exist), e.g., `weights/gift_faster_dwd.pth`
 + Run evaluation:
