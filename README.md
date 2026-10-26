@@ -90,7 +90,7 @@ pip install numpy==1.26.0
 ```
 :rotating_light: During robustness evaluation, Cityscapes-C corruptions are generated on the fly, no pre-generated Cityscapes-C dataset is required.
 
-## 4. Train and test
+## 4. Train and Test
 + DWD
 ```shell
 # Train with Faster R-CNN (single GPU)
