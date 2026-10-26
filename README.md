@@ -5,6 +5,8 @@
 ## :bell: Updates
 + 2026-10-26: Code is available now.
 
+![Figure](resources/Figure.png)
+
 ## 1. Pretraining Weights
 
 * You can directly download the preprocessed weights from this [link](https://drive.google.com/drive/folders/1SGlq6eXOg2PWBB_aUdLFk5VuEQTxlCvs) and place them in the `checkpoint` folder.
