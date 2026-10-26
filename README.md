@@ -6,7 +6,7 @@
 + 2026-10-26: Code is available now.
 
 <p align="center">
-  <img src="resources/Figure.png" width="800" alt="Figure">
+  <img src="resources/Figure.png" width="500" alt="Figure">
 </p>
 
 ## 1. Pretraining Weights
