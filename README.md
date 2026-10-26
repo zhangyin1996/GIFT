@@ -3,7 +3,7 @@
 </p>
 
 <h2 align="center">
-  🎁 GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
+  🎁GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
 </h2>
 
 <p align="center">
