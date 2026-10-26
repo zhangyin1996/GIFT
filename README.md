@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  🎉 Accepted at NeurIPS 2026
+  <strong>🎉 Accepted at NeurIPS 2026</strong>
 </p>
 
 ## :bell: Updates
