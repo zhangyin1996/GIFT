@@ -1,6 +1,22 @@
-# 🎁 GIFT
-## [NeurIPS 2026] GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
-[Yin Zhang](https://zhangyin1996.github.io/), [Yaoyue Zheng](https://yaoyz96.github.io/), [Yongqiang Zhang](https://scholar.google.com/citations?user=mgpE1noAAAAJ&hl), [Bogdan Raducanu](https://scholar.google.com/citations?user=zdIW07oAAAAJ), [Dan Liu](https://openreview.net/profile?id=~Dan_Liu14)
+<p align="center">
+  <img src="resources/logo.png" width="220" alt="GIFT Logo">
+</p>
+
+<h2 align="center">
+  🎁 GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection
+</h2>
+
+<p align="center">
+  <a href="https://zhangyin1996.github.io/">Yin Zhang</a>,
+  <a href="https://yaoyz96.github.io/">Yaoyue Zheng</a>,
+  <a href="https://scholar.google.com/citations?user=mgpE1noAAAAJ&hl">Yongqiang Zhang</a>,
+  <a href="https://scholar.google.com/citations?user=zdIW07oAAAAJ">Bogdan Raducanu</a>,
+  <a href="https://openreview.net/profile?id=~Dan_Liu14">Dan Liu</a>
+</p>
+
+<p align="center">
+  🎉 Accepted at NeurIPS 2026
+</p>
 
 ## :bell: Updates
 + 2026-10-26: Code is available now.
