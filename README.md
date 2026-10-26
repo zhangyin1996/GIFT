@@ -114,7 +114,6 @@ bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_citysca
 ## 5. Results 
 | Model  | Day Clear | Day Foggy | Dusk Rainy | Night Rainy | Night Clear | Avg. |mPC 
 |:------:|:---------:|:---------:|:----------:|:-----------:|:-----------:|:----:|:----:|
-| Cauvis | 72.2      | 52.3      | 61.3      | 44.1        | 58.3        | 57.6| 54.1|
 | GIFT | 75.8      | 56.5      | 64.6      | 48.1        | 62.6        | 61.6| 58.0|
 
 :rotating_light: We re-ran the experiments on October 23 using a single NVIDIA RTX 3090 GPU. You can follow the steps below to reproduce the results: 
