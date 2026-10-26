@@ -125,7 +125,7 @@ bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_citysca
 python tools/test.py configs/gift/gift-faster-rcnn_r50_fpn_dwd.py weights/gift_faster_dwd.pth
 ```
 
-## Acknowledgment
+## 6. Acknowledgment
 + The code is based on [Cauvis](https://github.com/lichen1015/Cauvis) (NeurIPS 2025) 
 + In addition, some ideas inspired by [OFT](https://oft.wyliu.com/) (NeurIPS 2023) and [PAID](https://github.com/wangkunyu241/PAID) (NeurIPS 2025).
 
