@@ -36,8 +36,9 @@
   python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_640.pth --height 640 --width 640
   ```
 
-## 2. Environment Setup (cuda 11.8, pytorch 2.2.0)
+## 2. Environment Setup
 ```bash
+# python 3.9, cuda 11.8, pytorch 2.2.0
 conda create -n gift -y python=3.9
 conda activate gift
 conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 -c pytorch -c nvidia
@@ -91,8 +92,18 @@ pip install numpy==1.26.0
 |   |   |-- Night-Sunny/
 |   |       |-- VOC2007  ### [Important] The official 'Night-Sunny' dataset does not include a VOC2007 folder, you need to create one yourself.
 |   |           |-- ...
+
 |-- cityscapes/
-|   |-- ....
+|   |-- leftImg8bit/
+|   |   |-- train/
+|   |       |-- aachen/
+|   |       |-- ...
+|   |   |-- val/
+|   |       |-- franfurt/
+|   |       |-- ...
+|   |-- annotations/
+|   |   |-- instancesonly_filtered_gtFine_train.json
+|   |   |-- instancesonly_filtered_gtFine_val.json
 ```
 :rotating_light: During robustness evaluation, Cityscapes-C corruptions are generated on the fly, no pre-generated Cityscapes-C dataset is required.
 
