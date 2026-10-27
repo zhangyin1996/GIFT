@@ -19,6 +19,7 @@
 </p>
 
 ## :bell: Updates
++ 2026-10-27: Paper is available. [arXiv](https://arxiv.org/pdf/2610.35374)
 + 2026-10-26: Code is available now.
 
 <p align="center">
