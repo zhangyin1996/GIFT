@@ -52,9 +52,15 @@ pip install numpy==1.26.0
 ```
 
 ## 3. Dataset Preparation
-+ Download the [DWD](https://github.com/AmingWu/Single-DGOD).
-+ Download the [original Cityscapes](https://www.cityscapes-dataset.com/downloads/) datasets and prepare the corresponding COCO-format detection annotations.
-+ Organize it in `/data/datasets` folder as follows:
++ Download the [DWD](https://github.com/AmingWu/Single-DGOD), `/data/datasets/Single-DGOD`.
++ Download the [original Cityscapes](https://www.cityscapes-dataset.com/downloads/), `/data/datasets/cityscapes`, and prepare the  COCO-format detection annotations.
+  - Run the following command:
+  ```
+  python tools/dataset_converters/cityscapes.py /data/datasets/cityscapes –nproc 8
+  ```
+  - Place the resulting `instancesonly_filtered_gtFine_train.json` and `instancesonly_filtered_gtFine_val.json` in the `/data/datasets/cityscapes/annotations/`.
++ The final dataset directory structure under `/data/datasets` is as follows:
+
 ```
 |-- Single-DGOD/
 |   |-- Daytime_Sunny/
@@ -97,24 +103,26 @@ pip install numpy==1.26.0
 CUDA_VISIBLE_DEVICES=0 bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py 1 --amp --work-dir ./work_dir/gift_faster_dwd --find_unused_parameters
 # Train with Faster R-CNN (mutiple GPUs)
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py 4 --amp --work-dir ./work_dir/gift_faster_dwd --find_unused_parameters
+# Test
+bash tools/dist_test.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py ./work_dir/gift_faster_dwd/epoch_12.pth 1 --work-dir ./work_dir/test_gift_faster_dwd
 
 # Train with DETR-based detector Dino (single GPUs)
 CUDA_VISIBLE_DEVICES=0 bash tools/dist_train.sh configs/gift/gift_dinov2_dinohead_bs1x4_dwd.py 1 --amp --work-dir ./work_dir/gift_detr_dwd --find_unused_parameters
 # Train with DETR-based detector Dino (mutiple GPUs)
 CUDA_VISIBLE_DEVICES=0,1,2,3 bash tools/dist_train.sh configs/gift/gift_dinov2_dinohead_bs1x4_dwd.py 4 --amp --work-dir ./work_dir/gift_detr_dwd --find_unused_parameters
-
-# test
-bash tools/dist_test.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py path/to/your.pth 1 --work-dir ./work_dir/test_gift_faster_dwd
+# Test
+bash tools/dist_test.sh configs/gift/gift-faster-rcnn_r50_fpn_dwd.py ./work_dir/gift_detr_dwd/epoch_12.pth 1 --work-dir ./work_dir/test_gift_detr_dwd
 ```
 
 + Cityscapes
 
 ```shell
+# Taking a single GPU as an example, the same applies to multiple GPUs.
 # Train on Source Domain (Cityscapes)
 bash tools/dist_train.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py 1 --amp --work-dir ./work_dir/gift_faster_cityscapes --find_unused_parameters
 
 # test on Target Domain
-bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py path/to/your/epoch_12.pth 1 --out path/to/your/xxx.pkl --work-dir ./work_dir --corruptions benchmark
+bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_cityscapes.py ./work_dir/gift_faster_cityscapes/epoch_12.pth 1 --out path/to/your/xxx.pkl --work-dir ./work_dir --corruptions benchmark
 ```
 ## 5. Results 
 | Model  | Day Clear | Day Foggy | Dusk Rainy | Night Rainy | Night Clear | Avg. |mPC 
