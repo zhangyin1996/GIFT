@@ -148,8 +148,18 @@ bash tools/dist_test_robustness.sh configs/gift/gift-faster-rcnn_r50_fpn_citysca
 ```bash
 python tools/test.py configs/gift/gift-faster-rcnn_r50_fpn_dwd.py weights/gift_faster_dwd.pth
 ```
+## 6. Citation
+If you find GIFT useful in your research, please consider citing and give us a star ⭐ on GitHub:
+```
+@article{zhang2026gift,
+  title={GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection},
+  author={Zhang, Yin and Zheng, Yaoyue and Zhang, Yongqiang and Raducanu, Bogdan and Li, Dan},
+  journal={arXiv preprint arXiv:2610.35374},
+  year={2026}
+}
+```
 
-## 6. Acknowledgment
+## 7. Acknowledgment
 + The code is based on [Cauvis](https://github.com/lichen1015/Cauvis) (NeurIPS 2025) 
 + In addition, some ideas inspired by [OFT](https://oft.wyliu.com/) (NeurIPS 2023) and [PAID](https://github.com/wangkunyu241/PAID) (NeurIPS 2025).
 
