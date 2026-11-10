@@ -185,7 +185,7 @@ If you find GIFT useful in your research, please consider citing and give us a s
 ```
 @article{zhang2026gift,
   title={GIFT: Representation Geometry Matters for Single-Domain Generalized Object Detection},
-  author={Zhang, Yin and Zheng, Yaoyue and Zhang, Yongqiang and Raducanu, Bogdan and Li, Dan},
+  author={Zhang, Yin and Zheng, Yaoyue and Zhang, Yongqiang and Raducanu, Bogdan and Liu, Dan},
   journal={arXiv preprint arXiv:2610.35374},
   year={2026}
 }
