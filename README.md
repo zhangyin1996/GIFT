@@ -27,18 +27,8 @@
   <img src="resources/Figure.png" width="700" alt="Figure">
 </p>
 
-## 1. Pretraining Weights
 
-* You can directly download the preprocessed weights from this [link](https://drive.google.com/drive/folders/1SGlq6eXOg2PWBB_aUdLFk5VuEQTxlCvs) and place them in the `checkpoints` folder.
-* You can also follow the steps below to process them yourself.
-  - Download pre-trained weights [dinov2_vitl14_pretrain.pth](https://dl.fbaipublicfiles.com/dinov2/dinov2_vitl14/dinov2_vitl14_pretrain.pth) from facebookresearch
-  - Convert
-  ```bash
-  python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_1024.pth --height 1024 --width 1024
-  python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_640.pth --height 640 --width 640
-  ```
-
-## 2. Environment Setup
+## 1. Environment Setup
 ```bash
 # python 3.9, cuda 11.8, pytorch 2.2.0
 conda create -n gift -y python=3.9
@@ -53,6 +43,17 @@ pip install xformers==0.0.24 --index-url https://download.pytorch.org/whl/cu118
 pip install -v -e .
 pip install numpy==1.26.0
 ```
+
+## 2. Pretraining Weights
+
+* You can directly download the preprocessed weights from this [link](https://drive.google.com/drive/folders/1SGlq6eXOg2PWBB_aUdLFk5VuEQTxlCvs) and place them in the `checkpoints` folder.
+* You can also follow the steps below to process them yourself.
+  - Download pre-trained weights [dinov2_vitl14_pretrain.pth](https://dl.fbaipublicfiles.com/dinov2/dinov2_vitl14/dinov2_vitl14_pretrain.pth) from facebookresearch
+  - Convert
+  ```bash
+  python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_1024.pth --height 1024 --width 1024
+  python tools/convert_models/convert_dinov2.py checkpoints/dinov2_vitl14_pretrain.pth checkpoints/dinov2_converted_640.pth --height 640 --width 640
+  ```
 
 ## 3. Dataset Preparation
 + Download the [DWD](https://github.com/AmingWu/Single-DGOD), `/data/datasets/Single-DGOD`.
